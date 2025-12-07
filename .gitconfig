@@ -1,3 +1,5 @@
 [user]
 	name = Edward Jazzhands
 	email = ed.jazzhands@gmail.com
+[core]
+	excludesfile = /home/brent/.gitignore_global
