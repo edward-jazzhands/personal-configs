@@ -3,7 +3,6 @@
 # ▓  ▓▓▓▓  ▓▓      ▓▓▓▓      ▓▓▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓      ▓▓
 # █  ████  ██  ████████  ████████        ██  ████  ██  ███████████  ███████████  █
 # █       ███        ██  ████████  ████  ███      ███        █████  ██████      ██
-                                                                               
 
 # If not running interactively, don't do anything
 # NOTE: This safety check basically prevents programs and scripts from sourcing this file
@@ -19,8 +18,8 @@ esac
 HISTCONTROL=ignoreboth
 
 # NOTE: You may want to enable or disable this depending on if this is
-# on a server environment where you use a lot of tmux sessions (you may not want
-# all sessions to combine into one history file)
+# on a server environment (for example if you use a lot of tmux sessions,
+# you may not want all sessions to combine into one history file)
 # Append to the history file, don't overwrite it:
 #shopt -s histappend
 
@@ -29,13 +28,13 @@ HISTCONTROL=ignoreboth
 HISTSIZE=1000
 HISTFILESIZE=2000
 
-# NOTE: This is mostly defensive, if this wasn't here then there's not a ton
-# of stuff affected. But doesn't hurt to have it.
+# NOTE: This is mostly defensive, if this wasn't here then there's not a lot
+# of things affected. But doesn't hurt to have it.
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-#! FLUFF - Ive never used chroot
+#! Ive never used chroot but this is here for reference
 # Set variable identifying the chroot you work in (used in the prompt below)
 #if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 #    debian_chroot=$(cat /etc/debian_chroot)
@@ -59,20 +58,19 @@ fi
 # ▓        ▓▓▓▓    ▓▓▓▓▓▓▓▓▓▓      ▓▓▓▓  ▓  ▓  ▓▓▓  ▓▓  ▓▓
 # █  █  █  █████  ███████████  ████████  ██    ████    ███
 # █  ████  █████  ███████████        ██  ███   █████  ████
-                                                        
 
 
 # This sets the prompt to be color if we find color or 256 in TERM.
 # NOTE: This block replaced a bunch of unnecessary checks in the default that provided
-# compatibility with old hardware.
+# compatibility with old hardware. I tend to use nice new terminals.
 if [[ $TERM == *"color"* ]] || [[ $TERM == *"256"* ]]; then
-    PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1="\$(date '+%H:%M:%S') \[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
 else
-    PS1='\u@\h:\w\$ '
+    PS1="\$(date '+%H:%M:%S') \u@\h:\w\$ "
 fi
 
-# If this is an xterm set the title to user@host:dir
 # NOTE: This updates the terminal tab title! It is important to have.
+# If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
@@ -82,24 +80,34 @@ xterm*|rxvt*)
 esac
 
 # ┌───────────────────────┐
-# │                       │
 # │       ENV Vars        │
-# │                       │
 # └───────────────────────┘
-                                                       
-export LANG=C.UTF-8
-export LC_ALL=C.UTF-8
+
+# These are locality settings. They ensure the terminal uses American English
+# style for formatting, dates, etc. C.UTF-8 (basic POSIX) is often recommended
+# instead of en_US.UTF-8 for containerized environments. In a normal desktop
+# environment these are usuallly set by the OS and not needed here.
+# export LANG=en_US.UTF-8
+# export LC_ALL=C.UTF-8
 
 # Poertry by default creates virtual environments in a special secret cache location.
 # This makes it place them in the project folder.
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 export mygithub="https://github.com/edward-jazzhands"
-                                                                      
+
 # ┌───────────────────────┐
-# │                       │
+# │      Git Config       │
+# └───────────────────────┘
+
+# Sets my global git ignore preferences:
+git config --global core.excludesfile ~/.gitignore_global
+
+# Sets gopass as the default git credential helper (Enable if installed):
+# git config --global credential.helper gopass
+
+# ┌───────────────────────┐
 # │        Aliases        │
-# │                       │
 # └───────────────────────┘
 
 # Apps
@@ -129,17 +137,6 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 
-# ┌───────────────────────┐
-# │                       │
-# │      Git Config       │
-# │                       │
-# └───────────────────────┘
-
-# Sets my global git ignore preferences:
-git config --global core.excludesfile ~/.gitignore_global
-
-# Sets gopass as the default git credential helper (Enable if installed):
-# git config --global credential.helper gopass
 
 
 # ░        ░░  ░░░░  ░░   ░░░  ░░░      ░░░        ░░        ░░░      ░░░   ░░░  ░░░      ░░
@@ -147,7 +144,6 @@ git config --global core.excludesfile ~/.gitignore_global
 # ▓      ▓▓▓▓  ▓▓▓▓  ▓▓  ▓  ▓  ▓▓  ▓▓▓▓▓▓▓▓▓▓▓  ▓▓▓▓▓▓▓▓  ▓▓▓▓▓  ▓▓▓▓  ▓▓  ▓  ▓  ▓▓▓      ▓▓
 # █  ████████  ████  ██  ██    ██  ████  █████  ████████  █████  ████  ██  ██    ████████  █
 # █  █████████      ███  ███   ███      ██████  █████        ███      ███  ███   ███      ██
-                                                                                          
 
 
 # Prints a color gradient to test truecolor support
@@ -167,9 +163,7 @@ colortest() {
 
 
 # ┌───────────────────────┐
-# │                       │
 # │    FZF and Ripgrep    │
-# │                       │
 # └───────────────────────┘
 
 # fuzzy cd
@@ -195,7 +189,7 @@ rgf() {
 # ▓  ▓▓▓▓  ▓▓       ▓▓▓       ▓▓▓▓      ▓▓▓▓▓▓▓▓▓      ▓▓▓▓  ▓  ▓  ▓▓▓  ▓▓  ▓▓▓▓      ▓▓
 # █        ██  ████████  ██████████████  ████████  ████████  ██    ████    ██████████  █
 # █  ████  ██  ████████  █████████      █████████        ██  ███   █████  ██████      ██
-                                                                                     
+
 
 . "$HOME/.local/bin/env"
 . "$HOME/.cargo/env"
