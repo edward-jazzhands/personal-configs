@@ -8,7 +8,7 @@ trap 'echo "Error occurred on line $LINENO" >&2' ERR
 trap 'printf "    \033[0;31mScript interrupted\033[0m\n" >&2; exit 1' INT
 
 printf "\033[0;31mWARNING\033[0m: Symlinks will overwrite existing .bashrc and other files!\n"
-read -p "1) Do you want to symlink your dotfiles? (y[default]/n): " answer1
+read -p "Are you sure you want to symlink your dotfiles? (y[default]/n): " answer1
 
 create_symlinks() {
     SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -39,19 +39,3 @@ elif [[ -z "$answer1" ]]; then
 else
     echo "Invalid input. Please enter y, n, or leave blank for yes."
 fi
-
-
-read -p "Do you want to set up your cloud drives with rclone? (y/n[default]): " answer2
-
-if [[ "$answer2" =~ ^[Yy]$ ]]; then
-    /bin/bash "$SCRIPT_DIR/rclone/systemd/setup.sh"
-    echo "Cloud drives script ran successfully"
-elif [[ "$answer2" =~ ^[Nn]$ ]]; then
-    echo "Not setting up cloud drives"
-elif [[ -z "$answer2" ]]; then
-    echo "Not setting up cloud drives"
-else
-    echo "Invalid input. Please enter y, n, or leave blank for no."
-fi
-
-exit 0
