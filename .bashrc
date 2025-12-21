@@ -91,7 +91,8 @@ esac
 # export LC_ALL=C.UTF-8
 
 # Poertry by default creates virtual environments in a special secret cache location.
-# This makes it place them in the project folder.
+# This makes it place them in the project folder. (I prefer for my .venv folders to always
+# be in the project folder to have more control over them.)
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 export mygithub="https://github.com/edward-jazzhands"

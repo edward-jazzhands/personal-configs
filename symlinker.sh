@@ -1,9 +1,16 @@
 #!/bin/bash
 
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;36m'
+NC='\033[0m' # No Color
+
 # Error handling setup
 set -e
 trap 'echo "Error occurred on line $LINENO" >&2' ERR
-trap 'printf "    \033[91mScript interrupted\033[0m\n" >&2; exit 1' INT
+trap 'printf "    ${RED}Script interrupted${NC}\n" >&2; exit 1' INT
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -11,10 +18,10 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "#===================================================================#"
 echo "                Symlink creator script"
 echo ""
-printf "\033[91mWARNING: Symlinks will overwrite existing .bashrc and other files.\033[0m \n"
+printf "${RED}WARNING: Symlinks will overwrite existing .bashrc and other files.${NC} \n"
 
 while true; do
-    printf "\033[36mDo you want to symlink your dotfiles in $HOME?\033[0m \n"
+    printf "${BLUE}Do you want to symlink your dotfiles in $HOME?${NC} \n"
     printf "(y/n[default]):"
     read -p " " answer1
     
@@ -69,7 +76,7 @@ echo ""
 
 
 while true; do
-    printf "\033[36mDo you want to mount TrueNAS SMB shares (on tailnet)?\033[0m\n"
+    printf "${BLUE}Do you want to mount TrueNAS SMB shares (on tailnet)?${NC}\n"
     printf "This will symlink a .mount OR .automount file to /etc/systemd/system/ \n"
     printf "(y/n[default]):"
     read -p " " answer2
@@ -116,7 +123,7 @@ if [[ "$answer2" =~ ^[Yy]$ ]]; then
         fi
 
         if output=$(sudo systemctl enable mnt-truenas\\x2dtailnet-brents\\x2ddata.mount 2>&1); then
-            printf "\033[92mSuccess \033[0m"
+            printf "${GREEN}Success ${NC}"
             if [[ -n "$output" ]]; then
                 echo ": $output"
             else
@@ -154,7 +161,7 @@ if [[ "$answer2" =~ ^[Yy]$ ]]; then
         fi
         
         if output=$(sudo systemctl enable mnt-truenas\\x2dtailnet-brents\\x2ddata.automount 2>&1); then
-            printf "\033[92mSuccess \033[0m"
+            printf "${GREEN}Success ${NC}"
             if [[ -n "$output" ]]; then
                 echo ": $output"
             else
