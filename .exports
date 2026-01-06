@@ -10,4 +10,11 @@
 # be in the project folder to have more control over them.)
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 
+# Add my personal github to the path
 export mygithub="https://github.com/edward-jazzhands"
+
+# Add $HOME/.local/bin to the path
+export PATH="$HOME/.local/bin:$PATH"
+
+# Add $HOME/bin to the path
+export PATH="$HOME/bin:$PATH"
