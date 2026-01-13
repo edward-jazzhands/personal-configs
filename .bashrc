@@ -60,7 +60,6 @@ esac
 
 
 dotfiles_list=(
-    ".init"
     ".exports"
     ".functions"
     ".aliases"

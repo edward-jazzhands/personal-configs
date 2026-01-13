@@ -1,5 +1,0 @@
-# Sets my global git ignore preferences:
-git config --global core.excludesfile ~/.gitignore_global
-
-# Sets gopass as the default git credential helper (Enable if installed):
-# git config --global credential.helper gopass
