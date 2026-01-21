@@ -1,0 +1,41 @@
+apt: tailscale   
+apt: tailscale-archive-keyring 
+apt: iw   (better newer ip)
+apt: samba   (File sharing protocol)
+apt: google-chrome-stable 
+apt: systemd-pilot   (System GUI)
+apt: dconf-editor  (system GUI)
+apt: font-manager   (system GUI)
+apt: grsync  (GUI frontend for rsync)
+apt: gparted
+apt: cheese  (webcam software)
+apt: kcolorchooser  (Color picker)
+fp:  tomjwatson.Emote  (Emoji picker)
+apt: simplescreenrecorder    (Record screen)
+apt: balena-etcher  (Creating USB boot sticks)
+fp:  handbrake.ghb  
+fp:  obsidian.Obsidian 
+fp:  gimp.GIMP 
+
+apt: cloc   (Count Lines of Code)
+apt: cmake  (programming)   
+apt: fonts-powerline   (for Zsh)
+apt: fzf   (programming)
+apt: git   (programming)
+apt: golang-go   (programming)
+apt: just   (programming)
+apt: kitty  (terminal)
+apt: tmux   (programming)
+apt: zsh   (programming)
+apt: openjdk-21-jre   (Java runtime)
+
+apt: remmina   (RDP protocol) 
+apt: parsec   (Video streaming from windows)
+fp:  moonlight_stream.Moonlight  (Video streaming from Sunshine/Linux)
+
+apt: pychess   
+apt: lmms   (DAW)
+apt: mixxx   (DJing software)
+
+
+
