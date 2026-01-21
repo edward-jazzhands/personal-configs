@@ -13,9 +13,41 @@ colortest() {
   }'
 }
 
-# Show all apps manually installed by user (ONLY FOR LINUX MINT at the moment)
+# Show all apps manually installed by user
+# Supports: Linux Mint, Ubuntu, Debian, Fedora, Arch
 installed-apps() {
-  gsettings get com.linuxmint.install installed-apps | tr ',' '\n' | tr -d "[]'" | sed 's/^ *//'
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    DISTRO=$ID
+  else
+    echo "Cannot detect distribution"
+    return 1
+  fi
+
+  case $DISTRO in
+    linuxmint)
+      # Linux Mint: use gsettings tracking
+      # tr -d "[]'" cleans up the array syntax
+      # tr ', ' ' \n' replaces every comma+space with space+newline
+      gsettings get com.linuxmint.install installed-apps | tr -d "[]'" | tr ', ' ' \n'
+      ;;
+    ubuntu|debian|pop|neon)
+      # Ubuntu/Debian: show manually installed packages (not dependencies)
+      comm -23 <(apt-mark showmanual | sort) <(gzip -dc /var/log/installer/initial-status.gz 2>/dev/null | sed -n 's/^Package: //p' | sort)
+      ;;
+    fedora|rhel|centos)
+      # Fedora/RHEL: packages explicitly installed by user
+      dnf repoquery --userinstalled --qf '%{name}' | grep -v -E '(^\@|kernel|dnf|systemd|grub)'
+      ;;
+    arch|manjaro)
+      # Arch: explicitly installed packages (not dependencies)
+      pacman -Qe | awk '{print $1}'
+      ;;
+    *)
+      echo "Unsupported distribution: $DISTRO"
+      return 1
+      ;;
+  esac
 }
 
 # Download entire website with wget
@@ -36,6 +68,12 @@ wgetsite() {
 # ┌───────────────────────┐
 # │    FZF and Ripgrep    │
 # └───────────────────────┘
+
+# fuzzy cd
+fcd() {
+  local dir
+  dir=$(find . -type d -not -path '*/\.*' | fzf) && cd "$dir"
+}
 
 # fuzzy shell history
 fsh() {

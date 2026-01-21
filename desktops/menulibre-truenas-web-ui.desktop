@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=TrueNAS Admin [Tailnet]
+Icon=application-x-executable
+Exec=/opt/google/chrome/google-chrome --app=http://truenas-scale:8080
+Actions=
+Categories=X-XFCE;X-Xfce-Toplevel;chrome-apps;
+Comment=
+Path=
+Terminal=false
+StartupNotify=false

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Code Server [Tailnet]
+Icon=vscode
+Exec=/opt/google/chrome/google-chrome --app=http://truenas-scale:33843/
+Actions=
+Categories=chrome-apps;

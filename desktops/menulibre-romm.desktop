@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Romm
+Comment=Self-hosted emulator
+Icon=applications-games-symbolic
+Exec=/opt/google/chrome/google-chrome --app=http://truenas-scale:31657/
+Actions=
+Categories=X-XFCE;X-Xfce-Toplevel;chrome-apps;

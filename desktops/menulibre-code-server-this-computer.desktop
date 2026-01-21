@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Code-Server [This Computer]
+Icon=visual-studio-code-insiders
+Exec=/opt/google/chrome/google-chrome --app=http://127.0.0.1:8080/
+Actions=
+Categories=X-XFCE;X-Xfce-Toplevel;chrome-apps;

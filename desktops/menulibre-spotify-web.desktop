@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Spotify Web
+Icon=spotify
+Exec=/opt/google/chrome/google-chrome --app=https://open.spotify.com/
+Actions=
+Categories=X-XFCE;X-Xfce-Toplevel;chrome-apps;

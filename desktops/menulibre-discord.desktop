@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=Discord
+Icon=discord
+Exec=/opt/google/chrome/google-chrome --app=https://discord.com/channels/@me
+Actions=
+Categories=X-XFCE;X-Xfce-Toplevel;chrome-apps;
