@@ -1,0 +1,7 @@
+// place in ~/.local/share/code-server/User
+
+{
+    "workbench.colorTheme": "Sweet Dracula Monokai",
+    "files.autoSave": "off",
+    "editor.inlayHints.enabled": "offUnlessPressed"
+}
