@@ -35,10 +35,12 @@ cat >> "$tmp1" <<'EOF'
 
 # Container UID 0 (root) -> Host UID 1001 (agent-1)
 agent-1:1001:1
-# Container UID 1 -> Host UID 1000 (brent)
+# Container UIDs 1-999 -> Host UIDs 165536-166534
+agent-1:165536:999
+# Container UID 1000 -> Host UID 1000 (brent)
 agent-1:1000:1
-# Container UIDs 2-65535 -> Host UIDs 165536-231070
-agent-1:165536:65535
+# Container UIDs 1001-65535 -> Host UIDs 166535-231069
+agent-1:166535:64535
 EOF
 
 sudo cp "$tmp1" /etc/subuid
@@ -51,10 +53,12 @@ cat >> "$tmp2" <<'EOF'
 
 # Container GID 0 (root) -> Host GID 1001 (agent-1)
 agent-1:1001:1
-# Container GID 1 -> Host GID 1000 (brent)
+# Container GIDs 1-999 -> Host GIDs 165536-166534
+agent-1:165536:999
+# Container GID 1000 -> Host GID 1000 (brent)
 agent-1:1000:1
-# Container GIDs 2-65535 -> Host GIDs 165536-231070
-agent-1:165536:65535
+# Container GIDs 1001-65535 -> Host GIDs 166535-231069
+agent-1:166535:64535
 EOF
 
 sudo cp "$tmp2" /etc/subgid
