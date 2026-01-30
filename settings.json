@@ -3,5 +3,8 @@
 {
     "workbench.colorTheme": "Sweet Dracula Monokai",
     "files.autoSave": "off",
-    "editor.inlayHints.enabled": "offUnlessPressed"
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "prettier.printWidth": 100,
+    "git.confirmSync": false,
+    "git.autofetch": true
 }
