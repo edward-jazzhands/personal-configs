@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name=ZDL
+Comment=For Doom mods
+Icon=xfce-games
+Exec=zdl %F
+Actions=
+Categories=Game;X-XFCE;X-Xfce-Toplevel;
