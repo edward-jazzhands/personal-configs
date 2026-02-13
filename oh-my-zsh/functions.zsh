@@ -123,3 +123,35 @@ my-plugins() {
     return 1
   fi
 }
+
+
+# ┌───────────────────────┐
+# │       Hardware        │
+# └───────────────────────┘
+
+# More flexible version
+add-latency() {
+    local iface=${1:-"unset"}
+    local delay=${2:-100ms}
+
+    if [[ "$iface" == "unset" ]]; then
+        echo "Usage: add-latency <interface> <delay>"
+        echo "Example: add-latency eth0 100ms"
+        echo "Use show-interfaces to see available interfaces"
+        return 1
+    fi
+
+    sudo tc qdisc add dev "$iface" root netem delay "$delay"
+    echo "Added ${delay} latency to ${iface}"
+}
+
+remove-latency() {
+    local iface=${1:-"unset"}
+
+    if [[ "$iface" == "unset" ]]; then
+        echo "Usage: remove-latency <interface>"
+        echo "Use show-interfaces to see available interfaces"
+        return 1
+    fi
+    sudo tc qdisc del dev "$iface" root 2>/dev/null && echo "Removed latency from ${iface}" || echo "No latency rules found on ${iface}"
+}

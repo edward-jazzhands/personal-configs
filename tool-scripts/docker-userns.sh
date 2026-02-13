@@ -51,14 +51,10 @@ tmp2=$(mktemp)
 grep -v -e '^agent-1:' -e '^# Container' /etc/subgid > "$tmp2"
 cat >> "$tmp2" <<'EOF'
 
-# Container GID 0 (root) -> Host GID 1001 (agent-1)
-agent-1:1001:1
-# Container GIDs 1-999 -> Host GIDs 165536-166534
-agent-1:165536:999
-# Container GID 1000 -> Host GID 1000 (brent)
+# Container GID 0 (root) -> Host GID 1000 (brent)
 agent-1:1000:1
-# Container GIDs 1001-65535 -> Host GIDs 166535-231069
-agent-1:166535:64535
+# Container GIDs 1-65535 -> Host GIDs 165536-231069
+agent-1:165536:65535
 EOF
 
 sudo cp "$tmp2" /etc/subgid
